@@ -7,6 +7,8 @@ import com.blockchase.listeners.entity.EntityDamage;
 import com.blockchase.listeners.entity.EntityDamageByEntity;
 import com.blockchase.listeners.entity.EntityRegen;
 import com.blockchase.listeners.entity.player.*;
+import com.blockchase.listeners.world.BlockBreak;
+import com.blockchase.listeners.world.BlockPlace;
 import com.blockchase.threads.GameTimer;
 import com.blockchase.utils.ChatUtilities;
 import com.blockchase.utils.LocationUtilities;
@@ -157,6 +159,10 @@ public class BlockChase extends JavaPlugin {
         pm.registerEvents(new PlayerDeath(this), this);
         pm.registerEvents(new PlayerLeave(this), this);
         pm.registerEvents(new PlayerInteract(this),this);
+        pm.registerEvents(new PlayerDrop(this), this);
+        pm.registerEvents(new PlayerSwitchHand(this), this);
+        pm.registerEvents(new BlockBreak(this),this);
+        pm.registerEvents(new BlockPlace(this), this);
 
     }
 
