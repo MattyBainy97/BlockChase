@@ -1,0 +1,27 @@
+package com.blockchase;
+
+public enum GameState {
+
+    IN_LOBBY, IN_GAME, RESET;
+
+    private static GameState currentState;
+
+    public static void setState(GameState state){
+
+        GameState.currentState = state;
+
+    }
+
+    public static boolean isState(GameState state){
+
+        return GameState.currentState == state;
+
+    }
+
+    public static GameState getState(){
+
+        return currentState;
+
+    }
+
+}

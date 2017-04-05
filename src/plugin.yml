@@ -1,0 +1,26 @@
+name: BlockChase
+main: com.blockchase.BlockChase
+author: Matty
+version: 1.0
+description: >
+             BlockChase Plugin
+
+commands:
+  start:
+    description: Starts the game
+    permission: bc.start
+    permission-message: Permission Denied!
+
+  nofall:
+    description: Tests a falling block
+
+  clearfield:
+    description: Clears the field
+
+  powerup:
+    description: Spawns a powerup
+
+permissions:
+  bc.start:
+    description: Allows use of start commands
+    default: op
