@@ -32,6 +32,7 @@ public class GameTimer implements Runnable {
 
                     if(gameWon == true){
 
+                        GameState.setState(GameState.RESTART);
                         ChatUtilities.broadcast(ChatColor.DARK_RED + "GAME OVER");
                         ChatUtilities.broadcast("The winner is:");
                         for(UUID uuid : PlayerHandler.getAliveList()){
@@ -62,8 +63,9 @@ public class GameTimer implements Runnable {
 
                     }
 
-                    if(time == 300){
+                    if(time == 600){
 
+                        GameState.setState(GameState.RESTART);
                         ChatUtilities.broadcast(ChatColor.DARK_RED + "GAME OVER");
                         if(PlayerHandler.getAliveList().size() > 1){
 

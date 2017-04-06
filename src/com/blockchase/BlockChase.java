@@ -90,8 +90,6 @@ public class BlockChase extends JavaPlugin {
 
                     GameState.setState(GameState.IN_GAME);
 
-                    ChatUtilities.onePlayer("Test commenced", player);
-
                     for (Player p : Bukkit.getOnlinePlayers()) {
 
                         LocationUtilities.spawnPlayer(p);
@@ -99,19 +97,20 @@ public class BlockChase extends JavaPlugin {
 
                     }
 
+                    ChatUtilities.broadcast(ChatColor.GREEN + "THE GAME HAS BEGUN");
+                    ChatUtilities.broadcast("Blocks are falling from the sky behind you");
+                    ChatUtilities.broadcast("Don't get hit by any blocks or take any fall damage");
+                    ChatUtilities.broadcast("If you take 4 hits from anything, you will die");
+
                     for (Player p : Bukkit.getOnlinePlayers()) {
 
-                        ChatUtilities.broadcast(ChatColor.GREEN + "THE GAME HAS BEGUN");
-                        ChatUtilities.broadcast("Blocks are falling from the sky behind you");
-                        ChatUtilities.broadcast("Don't get hit by any blocks or take any fall damage");
-                        ChatUtilities.broadcast("If you take 4 hits from anything, you will die");
                         ScoreboardUtilities.initialisePlayerScoreboard(p);
                         p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 1.5F, 1.5F);
 
                     }
 
                     new Thread(new GameTimer()).start();
-                    task = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BlockHandler(), 20L, 10L);
+                    task = Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new BlockHandler(), 100L, 10L);
 
                 }else{
 

@@ -2,7 +2,7 @@ package com.blockchase;
 
 public enum GameState {
 
-    IN_LOBBY, IN_GAME, RESET;
+    IN_LOBBY, IN_GAME, RESTART;
 
     private static GameState currentState;
 

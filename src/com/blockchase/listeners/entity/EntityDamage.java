@@ -1,6 +1,8 @@
 package com.blockchase.listeners.entity;
 
 import com.blockchase.BlockChase;
+import com.blockchase.GameState;
+import com.blockchase.handlers.player.PlayerHandler;
 import com.blockchase.listeners.BCListener;
 import com.blockchase.utils.ChatUtilities;
 import org.bukkit.entity.Player;
@@ -20,9 +22,23 @@ public class EntityDamage extends BCListener{
 
         if(e.getEntity() instanceof Player) {
 
+            Player p = ((Player) e.getEntity()).getPlayer();
+
             if (e.getCause() == EntityDamageEvent.DamageCause.SUFFOCATION || e.getCause() == EntityDamageEvent.DamageCause.FALLING_BLOCK || e.getCause() == EntityDamageEvent.DamageCause.FALL) {
 
                 e.setDamage(5);
+
+            }
+
+            if(PlayerHandler.isSpec(p)){
+
+                e.setCancelled(true);
+
+            }
+
+            if(GameState.isState(GameState.IN_LOBBY)){
+
+                e.setCancelled(true);
 
             }
 

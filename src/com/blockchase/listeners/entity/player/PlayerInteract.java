@@ -8,6 +8,8 @@ import net.md_5.bungee.api.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
@@ -37,8 +39,19 @@ public class PlayerInteract extends BCListener{
 
                         e.setCancelled(true);
                         PowerupHandler.collectPowerup(PowerupHandler.getRandomPowerup(), p);
+                        ChatUtilities.broadcast(ChatColor.DARK_AQUA + p.getName() + ChatColor.GOLD + " got up the powerup");
                         p.playSound(e.getClickedBlock().getLocation(), Sound.ENTITY_ENDERDRAGON_GROWL, 1.5F, 2.0F);
                         e.getClickedBlock().setType(Material.AIR);
+
+                        for (Entity ent : e.getClickedBlock().getLocation().getWorld().getEntities()) {
+
+                            if(ent.getType().equals(EntityType.ARMOR_STAND)){
+
+                                ent.remove();
+
+                            }
+
+                        }
 
                     } else if (p.getEquipment().getItemInMainHand().equals(PowerupHandler.getRestoreHearts())) {
 
@@ -53,6 +66,10 @@ public class PlayerInteract extends BCListener{
                             ChatUtilities.onePlayer(ChatColor.RED + "No health missing. Can't heal", p);
 
                         }
+
+                    }else{
+
+                        e.setCancelled(true);
 
                     }
 

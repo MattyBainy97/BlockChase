@@ -25,13 +25,13 @@ public class EntityDamageByEntity extends BCListener{
             Player damaged = ((Player) e.getEntity()).getPlayer();
             Player damager = ((Player) e.getDamager()).getPlayer();
 
-            if(damager.getEquipment().getItemInMainHand() == PowerupHandler.getSlowStick()){
+            if(damager.getEquipment().getItemInMainHand().equals(PowerupHandler.getSlowStick())){
 
                 e.setCancelled(true);
-                damaged.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 2));
+                damaged.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 60, 4));
                 damager.getInventory().remove(PowerupHandler.getSlowStick());
 
-            }else {
+            } else {
 
                 e.setCancelled(true);
 

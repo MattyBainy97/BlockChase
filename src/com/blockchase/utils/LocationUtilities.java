@@ -1,13 +1,9 @@
 package com.blockchase.utils;
 
 import com.blockchase.handlers.game.FireworkHandler;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.FallingBlock;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.material.Wool;
 
@@ -38,8 +34,8 @@ public class LocationUtilities {
     public static void spawnPlayer(Player p){
 
         Random rand = new Random();
-        int x = rand.nextInt((892 - 865) + 1) + 865;
-        int z = rand.nextInt((-419 + 446) + 1) - 446;
+        int x = rand.nextInt((893 - 866) + 1) + 866;
+        int z = rand.nextInt((-418 + 445) + 1) - 445;
 
         p.teleport(new Location(p.getWorld(), x, 4, z));
 
@@ -64,8 +60,16 @@ public class LocationUtilities {
         spawnLoc.getWorld().playSound(spawnLoc, Sound.ENTITY_PLAYER_LEVELUP, 3.0F, 1.0F);
 
         FallingBlock fb = spawnLoc.getWorld().spawnFallingBlock(spawnLoc, new MaterialData(Material.BEACON));
-        fb.setHurtEntities(true);
+        fb.setHurtEntities(false);
         fb.setDropItem(false);
+
+        ArmorStand as = (ArmorStand) spawnLoc.getWorld().spawnEntity(spawnLoc, EntityType.ARMOR_STAND);
+        as.setSmall(true);
+        as.setCustomName(ChatColor.GRAY + "" + ChatColor.MAGIC + "POWE" + ChatColor.RESET + "" + ChatColor.AQUA + "" + ChatColor.BOLD + " POWERUP " + ChatColor.RESET + "" + ChatColor.GRAY + "" + ChatColor.MAGIC + "RUPE");
+        as.setCustomNameVisible(true);
+        as.setVisible(false);
+
+        fb.addPassenger(as);
 
     }
 
@@ -163,6 +167,16 @@ public class LocationUtilities {
         int yMax = 28;
         int zMin = -448;
         int zMax = -417;
+
+        for (Entity ent : Bukkit.getWorld("BlockChase").getEntities()) {
+
+            if(ent.getType().equals(EntityType.ARMOR_STAND)){
+
+                ent.remove();
+
+            }
+
+        }
 
         ArrayList<Block> blocks = new ArrayList<Block>();
 

@@ -1,5 +1,6 @@
 package com.blockchase.handlers.game;
 
+import com.blockchase.GameState;
 import com.blockchase.handlers.player.PlayerHandler;
 import com.blockchase.threads.GameTimer;
 import com.blockchase.utils.ChatUtilities;
@@ -11,6 +12,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.material.MaterialData;
+
+import static com.blockchase.GameState.IN_GAME;
 
 public class BlockHandler implements Runnable{
 
@@ -28,7 +31,7 @@ public class BlockHandler implements Runnable{
 
             byte color = PlayerHandler.getColor(p);
 
-            if(!PlayerHandler.isSpec(p)) {
+            if(!PlayerHandler.isSpec(p) && GameState.isState(GameState.IN_GAME)){
 
                 if (LocationUtilities.isInside(spawnLoc)) {
 
@@ -50,7 +53,7 @@ public class BlockHandler implements Runnable{
 
         }
 
-        if(GameTimer.getTime() % 60 == 0 && GameTimer.getTime() != 0 && GameTimer.getTime() != 300){
+        if(GameTimer.getTime() % 60 == 0 && GameTimer.getTime() != 0 && GameTimer.getTime() != 600){
 
             if(!beaconSpawned) {
 

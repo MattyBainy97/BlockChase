@@ -61,20 +61,6 @@ public class PowerupHandler {
                 p.getInventory().addItem(slowStick);
                 ChatUtilities.onePlayer(start + ChatColor.GREEN + "Slow Stick", p);
                 ChatUtilities.onePlayer("Swing this stick at someone to slow them for 3 seconds", p);
-                ChatUtilities.onePlayer("You only have this powerup for 5 seconds", p);
-                Bukkit.getScheduler().scheduleSyncDelayedTask(BlockChase.getPlugin(), new Runnable(){
-
-                    public void run() {
-
-                        if(p.getInventory().contains(slowStick)) {
-
-                            p.getInventory().remove(slowStick);
-
-                        }
-
-                    }
-
-                },100L);
                 break;
             case BLINDNESS:
                 p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 100, 1));
@@ -90,20 +76,6 @@ public class PowerupHandler {
                 p.getInventory().addItem(restoreHearts);
                 ChatUtilities.onePlayer(start + ChatColor.GREEN + "Restore Hearts", p);
                 ChatUtilities.onePlayer("You can right click this item to restore 2.5 hearts", p);
-                ChatUtilities.onePlayer("You only have this powerup for 30 seconds", p);
-                Bukkit.getScheduler().scheduleSyncDelayedTask(BlockChase.getPlugin(), new Runnable(){
-
-                    public void run() {
-
-                        if(p.getInventory().contains(restoreHearts)) {
-
-                            p.getInventory().remove(restoreHearts);
-
-                        }
-
-                    }
-
-                },600L);
                 break;
             case INVISIBILITY:
                 p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100, 1));
